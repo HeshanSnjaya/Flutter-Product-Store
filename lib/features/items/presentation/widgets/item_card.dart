@@ -55,7 +55,6 @@ class _ItemCardState extends State<ItemCard> {
                 padding: const EdgeInsets.all(20),
                 child: Row(
                   children: [
-                    // Enhanced Leading Icon
                     Container(
                       width: 60,
                       height: 60,
@@ -85,7 +84,6 @@ class _ItemCardState extends State<ItemCard> {
                     ),
                     const SizedBox(width: 16),
                     
-                    // Enhanced Content
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,7 +100,6 @@ class _ItemCardState extends State<ItemCard> {
                           ),
                           const SizedBox(height: 6),
                           
-                          // Brand
                           Row(
                             children: [
                               Icon(
@@ -122,7 +119,6 @@ class _ItemCardState extends State<ItemCard> {
                           ),
                           const SizedBox(height: 12),
                           
-                          // Category badges
                           Row(
                             children: [
                               _buildCategoryChip(

@@ -61,7 +61,6 @@ class LoadingWidget extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             child: Row(
               children: [
-                // Leading circle
                 Container(
                   width: 60,
                   height: 60,
@@ -72,7 +71,6 @@ class LoadingWidget extends StatelessWidget {
                 ),
                 const SizedBox(width: 16),
                 
-                // Content
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -85,7 +83,6 @@ class LoadingWidget extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       
-                      // Subtitle
                       Container(
                         height: 12,
                         width: 120,
@@ -93,7 +90,6 @@ class LoadingWidget extends StatelessWidget {
                       ),
                       const SizedBox(height: 12),
                       
-                      // Chips
                       Row(
                         children: [
                           Container(
@@ -119,7 +115,6 @@ class LoadingWidget extends StatelessWidget {
                   ),
                 ),
                 
-                // Trailing
                 Container(
                   width: 32,
                   height: 32,

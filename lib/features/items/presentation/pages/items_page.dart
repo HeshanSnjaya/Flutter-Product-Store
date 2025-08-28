@@ -23,16 +23,13 @@ class ItemsPage extends ConsumerWidget {
       appBar: _buildAppBar(context, ref),
       body: Column(
         children: [
-          // Health Status Banner
           _buildHealthBanner(healthCheck),
           
-          // Filter Section with Animation
           const FilterSection()
             .animate()
             .fadeIn(duration: 400.ms, delay: 100.ms)
             .slideY(begin: -0.2, end: 0, duration: 400.ms),
 
-          // Items Content
           Expanded(
             child: _buildItemsContent(context, ref, items, filterState),
           ),
@@ -204,10 +201,8 @@ class ItemsPage extends ConsumerWidget {
           color: Theme.of(context).colorScheme.primary,
           child: Column(
             children: [
-              // Items count header
               _buildItemsCountHeader(context, itemsList.length),
               
-              // Responsive Items Grid/List
               Expanded(
                 child: _buildResponsiveItemsList(context, itemsList),
               ),
@@ -344,7 +339,6 @@ class ItemsPage extends ConsumerWidget {
   Widget _buildResponsiveItemsList(BuildContext context, List itemsList) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        // Use grid on larger screens (tablets/desktop)
         if (constraints.maxWidth > 600) {
           final crossAxisCount = constraints.maxWidth > 1200 ? 3 : 2;
           
@@ -367,7 +361,6 @@ class ItemsPage extends ConsumerWidget {
           );
         }
         
-        // Use list on mobile screens
         return ListView.builder(
           physics: const AlwaysScrollableScrollPhysics(),
           padding: const EdgeInsets.symmetric(vertical: 8),
@@ -421,7 +414,7 @@ class ItemsPage extends ConsumerWidget {
           elevation: 2,
           child: const Icon(Icons.refresh_rounded),
         )
-      : null; // Hide FAB on larger screens since we have app bar refresh
+      : null; 
   }
 
   Future<void> _refreshData(BuildContext context, WidgetRef ref) async {

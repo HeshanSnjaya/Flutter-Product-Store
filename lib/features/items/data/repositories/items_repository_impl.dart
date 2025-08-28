@@ -42,7 +42,6 @@ class ItemsRepositoryImpl implements ItemsRepository {
     }
   }
 
-  // Private method to convert ItemModel to Item entity
   Item _mapToEntity(dynamic model) {
     return Item(
       id: model.id,

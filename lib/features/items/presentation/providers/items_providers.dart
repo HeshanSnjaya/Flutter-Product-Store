@@ -6,17 +6,14 @@ import '../../domain/repositories/items_repository.dart';
 import '../../domain/usecases/filter_items.dart';
 import '../../domain/usecases/get_all_items.dart';
 
-// Data Source Provider
 final itemsRemoteDataSourceProvider = Provider<ItemsRemoteDataSource>(
   (ref) => ItemsRemoteDataSourceImpl(),
 );
 
-// Repository Provider
 final itemsRepositoryProvider = Provider<ItemsRepository>(
   (ref) => ItemsRepositoryImpl(ref.watch(itemsRemoteDataSourceProvider)),
 );
 
-// Use Cases Providers
 final getAllItemsUseCaseProvider = Provider<GetAllItems>(
   (ref) => GetAllItems(ref.watch(itemsRepositoryProvider)),
 );
@@ -25,18 +22,15 @@ final filterItemsUseCaseProvider = Provider<FilterItems>(
   (ref) => FilterItems(ref.watch(itemsRepositoryProvider)),
 );
 
-// Health Check Provider
 final healthCheckProvider = FutureProvider<bool>((ref) async {
   final repository = ref.watch(itemsRepositoryProvider);
   return await repository.checkHealth();
 });
 
-// Filter State Provider
 final filterStateProvider = StateProvider<FilterState>((ref) {
   return const FilterState();
 });
 
-// Items Provider with automatic refresh based on filter state
 final itemsProvider = FutureProvider<List<Item>>((ref) async {
   final filterState = ref.watch(filterStateProvider);
   
@@ -52,7 +46,6 @@ final itemsProvider = FutureProvider<List<Item>>((ref) async {
   }
 });
 
-// Filter State Class
 class FilterState {
   final String category;
   final String subCategory;

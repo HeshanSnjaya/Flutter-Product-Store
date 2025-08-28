@@ -17,7 +17,6 @@ class _FilterSectionState extends ConsumerState<FilterSection> {
   @override
   void initState() {
     super.initState();
-    // Initialize controllers with current filter state
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final filterState = ref.read(filterStateProvider);
       _categoryController.text = filterState.category;
@@ -41,10 +40,8 @@ class _FilterSectionState extends ConsumerState<FilterSection> {
       
       ref.read(filterStateProvider.notifier).state = filterState;
       
-      // Invalidate the items provider to trigger a refetch
       ref.invalidate(itemsProvider);
       
-      // Show feedback
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(filterState.hasFilters ? 'Filters applied' : 'Showing all items'),
@@ -123,7 +120,6 @@ class _FilterSectionState extends ConsumerState<FilterSection> {
                       textInputAction: TextInputAction.next,
                       onChanged: (value) => setState(() {}),
                       validator: (value) {
-                        // Optional: Add validation if needed
                         return null;
                       },
                     ),
@@ -151,7 +147,6 @@ class _FilterSectionState extends ConsumerState<FilterSection> {
                       onFieldSubmitted: (_) => _applyFilters(),
                       onChanged: (value) => setState(() {}),
                       validator: (value) {
-                        // Optional: Add validation if needed
                         return null;
                       },
                     ),

@@ -21,7 +21,7 @@ class StoreApp extends StatelessWidget {
   }
 
   ThemeData _buildLightTheme() {
-    const primaryColor = Color(0xFF4F46E5); // Modern indigo
+    const primaryColor = Color(0xFF4F46E5); 
     
     return ThemeData(
       colorScheme: ColorScheme.fromSeed(

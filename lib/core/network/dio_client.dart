@@ -34,9 +34,7 @@ class DioClient {
       responseBody: true,
       error: true,
       logPrint: (obj) {
-        // Only log in debug mode
         assert(() {
-          // ignore: avoid_print
           print('🌐 API: $obj');
           return true;
         }());
@@ -47,11 +45,9 @@ class DioClient {
   static InterceptorsWrapper _createRetryInterceptor() {
     return InterceptorsWrapper(
       onError: (error, handler) async {
-        // Retry logic for specific error types
         if (_shouldRetry(error) && error.requestOptions.extra['retryCount'] == null) {
           error.requestOptions.extra['retryCount'] = 1;
           
-          // Wait before retry
           await Future.delayed(const Duration(seconds: 2));
           
           try {
@@ -72,6 +68,6 @@ class DioClient {
     return error.type == DioExceptionType.connectionTimeout ||
            error.type == DioExceptionType.receiveTimeout ||
            (error.type == DioExceptionType.badResponse && 
-            error.response?.statusCode == 503); // Service unavailable
+            error.response?.statusCode == 503); 
   }
 }
