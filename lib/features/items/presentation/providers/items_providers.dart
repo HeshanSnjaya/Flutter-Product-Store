@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../data/datasources/items_remote_datasource.dart';
 import '../../data/repositories/items_repository_impl.dart';
 import '../../domain/entities/item.dart';
-// import '../../domain/repositories/items_repository.dart';
 import '../../domain/usecases/filter_items.dart';
 import '../../domain/usecases/get_all_items.dart';
 
@@ -32,7 +31,6 @@ final filterStateProvider = StateProvider((ref) {
   return const FilterState();
 });
 
-// Add missing providers
 final categoriesProvider = Provider<List<String>>((ref) {
   return ['books', 'clothing', 'electronics', 'fitness', 'sports', 'toys', 'furniture', 'food'];
 });
@@ -64,7 +62,6 @@ final itemsProvider = FutureProvider<List<Item>>((ref) async {
   }
 });
 
-// Updated FilterState class with search field
 class FilterState {
   final String category;
   final String subCategory;
