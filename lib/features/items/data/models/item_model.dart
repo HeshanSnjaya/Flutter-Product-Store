@@ -1,24 +1,47 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../domain/entities/item.dart';
 
-part 'item_model.freezed.dart';
-part 'item_model.g.dart';
+class ItemModel {
+  final String id;
+  final String name;
+  final String brand;
+  final String category;
+  final String subCategory;
+  final double price;
 
-@freezed
-class ItemModel with _$ItemModel {
-  const factory ItemModel({
-    required String id,
-    required String name,
-    required String brand,
-    required String category,
-    required String subCategory,
-  }) = _ItemModel;
+  const ItemModel({
+    required this.id,
+    required this.name,
+    required this.brand,
+    required this.category,
+    required this.subCategory,
+    required this.price,
+  });
 
-  factory ItemModel.fromJson(Map<String, dynamic> json) =>
-      _$ItemModelFromJson(json);
-}
+  factory ItemModel.fromJson(Map<String, dynamic> json) {
+    return ItemModel(
+      id: _safeString(json['id']),
+      name: _safeString(json['name']),
+      brand: _safeString(json['brand']),
+      // Handle both "category" and "categiry" (API typo)
+      category: _safeString(json['category'] ?? json['categiry']),
+      subCategory: _safeString(json['subCategory']),
+      price: _parsePrice(json['price']),
+    );
+  }
 
-extension ItemModelX on ItemModel {
+  static String _safeString(dynamic value) {
+    if (value == null) return 'Unknown';
+    return value.toString();
+  }
+
+  static double _parsePrice(dynamic price) {
+    if (price == null) return 0.0;
+    if (price is double) return price;
+    if (price is int) return price.toDouble();
+    if (price is String) return double.tryParse(price) ?? 0.0;
+    return 0.0;
+  }
+
   Item toEntity() {
     return Item(
       id: id,
@@ -28,16 +51,37 @@ extension ItemModelX on ItemModel {
       subCategory: subCategory,
     );
   }
-}
 
-extension ItemX on Item {
-  ItemModel toModel() {
-    return ItemModel(
-      id: id,
-      name: name,
-      brand: brand,
-      category: category,
-      subCategory: subCategory,
-    );
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'brand': brand,
+      'category': category,
+      'subCategory': subCategory,
+      'price': price,
+    };
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    return other is ItemModel &&
+        other.id == id &&
+        other.name == name &&
+        other.brand == brand &&
+        other.category == category &&
+        other.subCategory == subCategory &&
+        other.price == price;
+  }
+
+  @override
+  int get hashCode {
+    return Object.hash(id, name, brand, category, subCategory, price);
+  }
+
+  @override
+  String toString() {
+    return 'ItemModel(id: $id, name: $name, brand: $brand, category: $category, subCategory: $subCategory, price: $price)';
   }
 }

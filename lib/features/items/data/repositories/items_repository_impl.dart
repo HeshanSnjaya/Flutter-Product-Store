@@ -11,7 +11,7 @@ class ItemsRepositoryImpl implements ItemsRepository {
   Future<List<Item>> getAllItems() async {
     try {
       final itemModels = await remoteDataSource.getAllItems();
-      return itemModels.map((model) => _mapToEntity(model)).toList();
+      return itemModels.map((model) => model.toEntity()).toList();
     } catch (e) {
       throw Exception('Repository: Failed to get all items - $e');
     }
@@ -27,7 +27,7 @@ class ItemsRepositoryImpl implements ItemsRepository {
         category: category,
         subCategory: subCategory,
       );
-      return itemModels.map((model) => _mapToEntity(model)).toList();
+      return itemModels.map((model) => model.toEntity()).toList();
     } catch (e) {
       throw Exception('Repository: Failed to filter items - $e');
     }
@@ -40,15 +40,5 @@ class ItemsRepositoryImpl implements ItemsRepository {
     } catch (_) {
       return false;
     }
-  }
-
-  Item _mapToEntity(dynamic model) {
-    return Item(
-      id: model.id,
-      name: model.name,
-      brand: model.brand,
-      category: model.category,
-      subCategory: model.subCategory,
-    );
   }
 }
