@@ -21,8 +21,7 @@ class StoreApp extends StatelessWidget {
   }
 
   ThemeData _buildLightTheme() {
-    const primaryColor = Color(0xFF4F46E5); 
-    
+    const primaryColor = Color(0xFF2563EB); // blue-600
     return ThemeData(
       colorScheme: ColorScheme.fromSeed(
         seedColor: primaryColor,
@@ -30,11 +29,11 @@ class StoreApp extends StatelessWidget {
       ),
       textTheme: GoogleFonts.interTextTheme().copyWith(
         headlineSmall: GoogleFonts.inter(
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w700, // bolder for titles
           letterSpacing: -0.5,
         ),
         titleMedium: GoogleFonts.inter(
-          fontWeight: FontWeight.w500,
+          fontWeight: FontWeight.w600,
           letterSpacing: -0.2,
         ),
         bodyMedium: GoogleFonts.inter(
@@ -47,15 +46,16 @@ class StoreApp extends StatelessWidget {
         centerTitle: true,
         elevation: 0,
         scrolledUnderElevation: 1,
+        backgroundColor: primaryColor.withOpacity(0.06),
         titleTextStyle: GoogleFonts.inter(
-          fontSize: 18,
-          fontWeight: FontWeight.w600,
+          fontSize: 20,
+          fontWeight: FontWeight.w800, // bold visible title
           color: Colors.black87,
           letterSpacing: -0.3,
         ),
       ),
       cardTheme: CardThemeData(
-        elevation: 0,
+        elevation: 1,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
           side: BorderSide(
@@ -74,9 +74,9 @@ class StoreApp extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
           textStyle: GoogleFonts.inter(
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w600,
             letterSpacing: 0.1,
           ),
         ),
@@ -90,27 +90,31 @@ class StoreApp extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(color: Colors.grey.shade300),
         ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+        focusedBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(12)),
           borderSide: BorderSide(color: primaryColor, width: 2),
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         filled: true,
-        fillColor: Colors.grey.shade50,
+        fillColor: Colors.white,
       ),
     );
   }
 
   ThemeData _buildDarkTheme() {
-    const primaryColor = Color(0xFF6366F1);
-    
+    const primaryColor = Color(0xFF3B82F6);
     return ThemeData(
       colorScheme: ColorScheme.fromSeed(
         seedColor: primaryColor,
         brightness: Brightness.dark,
       ),
-      textTheme: GoogleFonts.interTextTheme(ThemeData.dark().textTheme),
+      textTheme: GoogleFonts.interTextTheme(ThemeData.dark().textTheme).copyWith(
+        titleMedium: GoogleFonts.inter(fontWeight: FontWeight.w700),
+      ),
       useMaterial3: true,
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Color(0xFF0B1220),
+      ),
     );
   }
 }

@@ -62,26 +62,4 @@ class ItemModel {
       'price': price,
     };
   }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    return other is ItemModel &&
-        other.id == id &&
-        other.name == name &&
-        other.brand == brand &&
-        other.category == category &&
-        other.subCategory == subCategory &&
-        other.price == price;
-  }
-
-  @override
-  int get hashCode {
-    return Object.hash(id, name, brand, category, subCategory, price);
-  }
-
-  @override
-  String toString() {
-    return 'ItemModel(id: $id, name: $name, brand: $brand, category: $category, subCategory: $subCategory, price: $price)';
-  }
 }

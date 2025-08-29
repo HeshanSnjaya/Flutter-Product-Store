@@ -10,24 +10,19 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  
   # State Management
   flutter_riverpod: ^2.5.1
   hooks_riverpod: ^2.5.1
-  
   # Networking
   dio: ^5.5.0+1
   connectivity_plus: ^6.0.5
-  
   # Code Generation
   freezed_annotation: ^2.4.4
   json_annotation: ^4.9.0
-  
   # Premium UI/UX Enhancements ⭐
   google_fonts: ^6.1.0
   flutter_animate: ^4.5.0
   shimmer: ^3.0.0
-  
   # Icons & UI
   cupertino_icons: ^1.0.6
 
@@ -35,11 +30,19 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
-  
-  # Code Generation
   build_runner: ^2.4.11
   freezed: ^2.5.7
   json_serializable: ^6.8.0
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/bg_default.jpg
+    - assets/images/bg_electronics.jpg
+    - assets/images/bg_books.jpg
+    - assets/images/bg_clothing.jpg
+    - assets/images/bg_sports.jpg
+    - assets/images/bg_toys.jpg
+    - assets/images/bg_furniture.jpg
+    - assets/images/bg_food.jpg
+    - assets/images/bg_fitness.jpg
